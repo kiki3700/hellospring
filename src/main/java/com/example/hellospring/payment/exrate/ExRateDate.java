@@ -1,4 +1,4 @@
-package com.example.hellospring.payment;
+package com.example.hellospring.payment.exrate;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -1,7 +1,8 @@
 package com.example.hellospring.payment;
 
+import com.example.hellospring.payment.payment.Payment;
+import com.example.hellospring.payment.payment.PaymentService;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.io.IOException;

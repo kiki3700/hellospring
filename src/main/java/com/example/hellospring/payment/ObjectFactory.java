@@ -1,5 +1,9 @@
 package com.example.hellospring.payment;
 
+import com.example.hellospring.payment.exrate.CashedExRateProvider;
+import com.example.hellospring.payment.payment.ExRateProvider;
+import com.example.hellospring.payment.exrate.WebApiExRateProvider;
+import com.example.hellospring.payment.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

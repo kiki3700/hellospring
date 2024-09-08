@@ -1,4 +1,6 @@
-package com.example.hellospring.payment;
+package com.example.hellospring.payment.exrate;
+
+import com.example.hellospring.payment.payment.ExRateProvider;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -11,7 +13,7 @@ import java.math.BigDecimal;
  * Date: 2024/09/01 <br>
  * Time: <br>
  */
-public class SimpleExRateProvider implements ExRateProvider{
+public class SimpleExRateProvider implements ExRateProvider {
     @Override
     public BigDecimal getExRate(String currency) throws IOException {
         if (currency.equals("USD")) return BigDecimal.valueOf(1000);
