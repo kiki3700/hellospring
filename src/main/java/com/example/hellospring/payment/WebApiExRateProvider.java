@@ -1,6 +1,7 @@
 package com.example.hellospring.payment;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * Date: 2024/09/01 <br>
  * Time: <br>
  */
+@Component
 public class WebApiExRateProvider implements ExRateProvider {
     @Override
     public BigDecimal getExRate(String currency) throws IOException {
@@ -30,6 +32,7 @@ public class WebApiExRateProvider implements ExRateProvider {
         ObjectMapper mapper = new ObjectMapper();
         ExRateDate exRateDate = mapper.readValue(response, ExRateDate.class);
         BigDecimal exRate = exRateDate.rates().get("KRW");
+        System.out.println("Ex Rate: " + exRate);
         return exRate;
     }
 }

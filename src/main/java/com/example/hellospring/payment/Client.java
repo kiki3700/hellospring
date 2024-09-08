@@ -1,5 +1,9 @@
 package com.example.hellospring.payment;
 
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 
@@ -12,10 +16,9 @@ import java.math.BigDecimal;
  * Time: <br>
  */
 public class Client {
-
     public static void main(String[] args) throws IOException {
-        ObjectFactory objectFactory = new ObjectFactory();
-        PaymentService paymentService = objectFactory.paymentService();
+        BeanFactory beanFactory = new AnnotationConfigApplicationContext(ObjectFactory.class);
+        PaymentService paymentService  = beanFactory.getBean(PaymentService.class);
         Payment payment = paymentService.prepare(100L, "USD", BigDecimal.valueOf(50.7));
         System.out.println(payment);
     }
