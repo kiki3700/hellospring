@@ -12,5 +12,5 @@ import java.math.BigDecimal;
  * Time: <br>
  */
 public interface ExRateProvider {
-    BigDecimal getExRate(String currency) throws IOException;
+    BigDecimal getExRate(String currency);
 }
