@@ -1,12 +1,15 @@
 package com.example.hellospring.payment;
 
+import com.example.hellospring.payment.api.ApiTemplate;
 import com.example.hellospring.payment.exrate.CashedExRateProvider;
+import com.example.hellospring.payment.exrate.RestTemplateExRateProvider;
 import com.example.hellospring.payment.payment.ExRateProvider;
 import com.example.hellospring.payment.exrate.WebApiExRateProvider;
 import com.example.hellospring.payment.payment.PaymentService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.Clock;
 
@@ -32,10 +35,17 @@ public class PaymentConfig {
     }
 
     @Bean
-    public ExRateProvider exRateProvider() {
-        return new WebApiExRateProvider();
+    public ApiTemplate apiTemplate() {
+        return new ApiTemplate();
     }
 
     @Bean
-    public Clock clock() {return Clock.systemDefaultZone();}
+    public ExRateProvider exRateProvider() {
+        return new RestTemplateExRateProvider(new RestTemplate());
+    }
+
+    @Bean
+    public Clock clock() {
+        return Clock.systemDefaultZone();
+    }
 }

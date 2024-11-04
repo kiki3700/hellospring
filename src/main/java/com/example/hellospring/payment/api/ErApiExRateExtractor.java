@@ -1,6 +1,6 @@
 package com.example.hellospring.payment.api;
 
-import com.example.hellospring.payment.exrate.ExRateDate;
+import com.example.hellospring.payment.exrate.ExRateData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,7 +18,7 @@ public class ErApiExRateExtractor implements ExRateExtractor{
     @Override
     public BigDecimal extract(String response) throws JsonProcessingException {
         ObjectMapper mapper= new ObjectMapper();
-        ExRateDate exRateDate = mapper.readValue(response, ExRateDate.class);
+        ExRateData exRateDate = mapper.readValue(response, ExRateData.class);
         return exRateDate.rates().get("KRW");
     }
 }
