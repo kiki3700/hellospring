@@ -1,7 +1,6 @@
 package com.example.hellospring.payment.order;
 
-import com.example.hellospring.payment.data.OrderRepository;
-import jakarta.transaction.Transactional;
+import com.example.hellospring.payment.data.JpaOrderRepository;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;

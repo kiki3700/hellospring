@@ -1,12 +1,8 @@
 package com.example.hellospring.payment;
 
-import com.example.hellospring.payment.data.OrderRepository;
-import com.example.hellospring.payment.order.Order;
 import com.example.hellospring.payment.order.OrderService;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.transaction.support.TransactionTemplate;
 
 import java.math.BigDecimal;
 

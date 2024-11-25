@@ -1,6 +1,7 @@
 package com.example.hellospring.payment;
 
-import com.example.hellospring.payment.data.OrderRepository;
+import com.example.hellospring.payment.data.JpaOrderRepository;
+import com.example.hellospring.payment.order.OrderRepository;
 import com.example.hellospring.payment.order.OrderService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,7 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 public class OrderConfig {
     @Bean
     public OrderRepository orderRepository() {
-        return new OrderRepository();
+        return new JpaOrderRepository();
     }
 
     @Bean

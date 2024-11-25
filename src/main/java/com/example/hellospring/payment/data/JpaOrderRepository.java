@@ -1,9 +1,8 @@
 package com.example.hellospring.payment.data;
 
 import com.example.hellospring.payment.order.Order;
+import com.example.hellospring.payment.order.OrderRepository;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.PersistenceContext;
 
 /**
@@ -16,11 +15,12 @@ import jakarta.persistence.PersistenceContext;
  */
 
 
-public class OrderRepository {
+public class JpaOrderRepository implements OrderRepository {
     @PersistenceContext
     private EntityManager entityManager;
 
 
+    @Override
     public void save(Order order) {
         entityManager.persist(order);
     }
