@@ -33,5 +33,7 @@ public class TestPaymentConfig {
     }
 
     @Bean
-    public Clock clock(){return Clock.fixed(Instant.now(), ZoneId.systemDefault());}
+    public Clock clock() {
+        return Clock.fixed(Instant.now(), ZoneId.systemDefault());
+    }
 }

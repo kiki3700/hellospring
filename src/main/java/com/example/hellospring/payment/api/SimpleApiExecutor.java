@@ -22,7 +22,7 @@ public class SimpleApiExecutor implements ApiExecutor {
         HttpURLConnection connection;
         connection = (HttpURLConnection) uri.toURL().openConnection();
         try (var br = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
-            return  br.lines().collect(Collectors.joining());
+            return br.lines().collect(Collectors.joining());
         }
     }
 }

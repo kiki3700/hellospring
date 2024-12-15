@@ -20,6 +20,7 @@ public class RestTemplateExRateProvider implements ExRateProvider {
     public RestTemplateExRateProvider(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
     @Override
     public BigDecimal getExRate(String currency) {
         var url = "https://open.er-api.com/v6/latest/" + currency;

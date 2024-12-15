@@ -22,8 +22,8 @@ public class ClockTest {
     void clock() {
         Clock clock = Clock.systemDefaultZone();
 
-        LocalDateTime dt1= LocalDateTime.now(clock);
-        LocalDateTime dt2= LocalDateTime.now(clock);
+        LocalDateTime dt1 = LocalDateTime.now(clock);
+        LocalDateTime dt2 = LocalDateTime.now(clock);
         Assertions.assertThat(dt2).isAfter(dt1);
     }
 
@@ -32,9 +32,9 @@ public class ClockTest {
     void fixedClock() {
         Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
 
-        LocalDateTime dt1= LocalDateTime.now(clock);
-        LocalDateTime dt2= LocalDateTime.now(clock);
-        LocalDateTime dt3= LocalDateTime.now(clock).plusHours(1);
+        LocalDateTime dt1 = LocalDateTime.now(clock);
+        LocalDateTime dt2 = LocalDateTime.now(clock);
+        LocalDateTime dt3 = LocalDateTime.now(clock).plusHours(1);
         Assertions.assertThat(dt2).isEqualTo(dt1);
         Assertions.assertThat(dt3).isEqualTo(dt1.plusHours(1));
     }

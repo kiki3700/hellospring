@@ -28,6 +28,7 @@ class PaymentServiceTest {
     void setUp() throws IOException {
         this.clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
     }
+
     @Test
     void prepare() throws IOException {
         testPayment(BigDecimal.valueOf(10), clock, BigDecimal.valueOf(100));
@@ -39,7 +40,7 @@ class PaymentServiceTest {
     void validUntil() throws IOException {
         ExRateProviderStub exRateProviderStub = new ExRateProviderStub(BigDecimal.valueOf(1_000));
         PaymentService paymentService = new PaymentService(exRateProviderStub, this.clock);
-        var payment = paymentService.prepare(1L,"USD", BigDecimal.TEN);
+        var payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         LocalDateTime now = LocalDateTime.now(this.clock);
         LocalDateTime expectedValidUntil = now.plusMinutes(30);

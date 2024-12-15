@@ -21,8 +21,9 @@ public class CashedExRateProvider implements ExRateProvider {
     private LocalDateTime cachedExpiryTime;
 
     public CashedExRateProvider(ExRateProvider target) {
-        this.target=   target;
+        this.target = target;
     }
+
     @Override
     public BigDecimal getExRate(String currency) {
         if (cachedExRate == null || cachedExpiryTime.isBefore(LocalDateTime.now())) {

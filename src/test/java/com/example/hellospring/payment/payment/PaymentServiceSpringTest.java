@@ -28,20 +28,23 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @ContextConfiguration(classes = TestPaymentConfig.class)
 public class PaymentServiceSpringTest {
 
-    @Autowired BeanFactory beanFactory;
-    @Autowired PaymentService paymentService;
+    @Autowired
+    BeanFactory beanFactory;
+    @Autowired
+    PaymentService paymentService;
     @Autowired
     Clock clock;
 
     @Test
     void testValidUntil() throws IOException {
-        var payment = paymentService.prepare(1L,"USD", BigDecimal.TEN);
+        var payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
 
         LocalDateTime now = LocalDateTime.now(this.clock);
         LocalDateTime expectedValidUntil = now.plusMinutes(30);
 
         assertThat(payment.getValidUntil()).isEqualTo(expectedValidUntil);
     }
+
     @Test
     void testPayment() throws IOException {
 //        PaymentService paymentService = beanFactory.getBean(PaymentService.class);
@@ -55,7 +58,7 @@ public class PaymentServiceSpringTest {
     }
 
     @Test
-    void validUntil(){
+    void validUntil() {
 
     }
 }

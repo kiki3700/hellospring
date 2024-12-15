@@ -20,9 +20,10 @@ public class SortTest {
     Sort sort;
 
     @BeforeEach
-    void beforeEach(){
+    void beforeEach() {
         sort = new Sort();
     }
+
     @Test
     void sort() {
         var list = sort.sortByLength(Arrays.asList("aa", "b"));

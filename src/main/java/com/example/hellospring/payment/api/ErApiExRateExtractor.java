@@ -14,10 +14,10 @@ import java.math.BigDecimal;
  * Date: 2024/11/03 <br>
  * Time: <br>
  */
-public class ErApiExRateExtractor implements ExRateExtractor{
+public class ErApiExRateExtractor implements ExRateExtractor {
     @Override
     public BigDecimal extract(String response) throws JsonProcessingException {
-        ObjectMapper mapper= new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
         ExRateData exRateDate = mapper.readValue(response, ExRateData.class);
         return exRateDate.rates().get("KRW");
     }

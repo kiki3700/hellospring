@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 public class OrderClient {
     public static void main(String[] args) {
         BeanFactory beanFactory = new AnnotationConfigApplicationContext(OrderConfig.class);
-        OrderService orderService= beanFactory.getBean(OrderService.class);
+        OrderService orderService = beanFactory.getBean(OrderService.class);
 
         var order = orderService.createOrder("12", BigDecimal.valueOf(100));
         System.out.println(order);
