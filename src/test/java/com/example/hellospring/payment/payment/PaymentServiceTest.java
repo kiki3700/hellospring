@@ -24,6 +24,18 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class PaymentServiceTest {
     Clock clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
 
+    public static void testPayment(BigDecimal exRate, Clock clock, BigDecimal convertedAmount) throws IOException {
+        ExRateProviderStub exRateProviderStub = new ExRateProviderStub(exRate);
+        PaymentService paymentService = new PaymentService(exRateProviderStub, clock);
+        Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
+
+        assertThat(payment.getExRate()).isEqualByComparingTo(exRate);
+        // 원화환산 금액 게산
+        assertThat(payment.getConvertedAmount()).isEqualByComparingTo(convertedAmount);
+        // 원화환산 금액의 유효시간 계산
+        assertThat(payment.getValidUntil()).isAfter(LocalDateTime.now());
+    }
+
     @BeforeEach
     void setUp() throws IOException {
         this.clock = Clock.fixed(Instant.now(), ZoneId.systemDefault());
@@ -46,17 +58,5 @@ class PaymentServiceTest {
         LocalDateTime expectedValidUntil = now.plusMinutes(30);
 
         assertThat(payment.getValidUntil()).isEqualTo(expectedValidUntil);
-    }
-
-    public static void testPayment(BigDecimal exRate, Clock clock, BigDecimal convertedAmount) throws IOException {
-        ExRateProviderStub exRateProviderStub = new ExRateProviderStub(exRate);
-        PaymentService paymentService = new PaymentService(exRateProviderStub, clock);
-        Payment payment = paymentService.prepare(1L, "USD", BigDecimal.TEN);
-
-        assertThat(payment.getExRate()).isEqualByComparingTo(exRate);
-        // 원화환산 금액 게산
-        assertThat(payment.getConvertedAmount()).isEqualByComparingTo(convertedAmount);
-        // 원화환산 금액의 유효시간 계산
-        assertThat(payment.getValidUntil()).isAfter(LocalDateTime.now());
     }
 }

@@ -12,18 +12,6 @@ public class Payment {
     private BigDecimal convertedAmount;
     private LocalDateTime validUntil;
 
-    @Override
-    public String toString() {
-        return "Payment{" +
-            "orderId=" + orderId +
-            ", currency='" + currency + '\'' +
-            ", foreignCurrencyAmount=" + foreignCurrencyAmount +
-            ", exRate=" + exRate +
-            ", convertedAmount=" + convertedAmount +
-            ", validUntil=" + validUntil +
-            '}';
-    }
-
     public Payment(
         Long orderId,
         String currency,
@@ -40,10 +28,39 @@ public class Payment {
         this.validUntil = validUntil;
     }
 
+    public static Payment createPrepared(
+        Long orderId,
+        String currency,
+        BigDecimal foreignCurrencyAmount,
+        BigDecimal exRate, LocalDateTime now
+    ) {
+        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
+        LocalDateTime validUntil = now.plusMinutes(30);
+        return new Payment(
+            orderId,
+            currency,
+            foreignCurrencyAmount,
+            exRate,
+            convertedAmount,
+            validUntil
+        );
+    }
+
+    @Override
+    public String toString() {
+        return "Payment{" +
+            "orderId=" + orderId +
+            ", currency='" + currency + '\'' +
+            ", foreignCurrencyAmount=" + foreignCurrencyAmount +
+            ", exRate=" + exRate +
+            ", convertedAmount=" + convertedAmount +
+            ", validUntil=" + validUntil +
+            '}';
+    }
+
     public Long getOrderId() {
         return orderId;
     }
-
 
     public String getCurrency() {
         return currency;
@@ -67,23 +84,5 @@ public class Payment {
 
     public boolean isValid(Clock clock) {
         return LocalDateTime.now().isBefore(this.validUntil);
-    }
-
-    public static Payment createPrepared(
-        Long orderId,
-        String currency,
-        BigDecimal foreignCurrencyAmount,
-        BigDecimal exRate, LocalDateTime now
-    ) {
-        BigDecimal convertedAmount = foreignCurrencyAmount.multiply(exRate);
-        LocalDateTime validUntil = now.plusMinutes(30);
-        return new Payment(
-            orderId,
-            currency,
-            foreignCurrencyAmount,
-            exRate,
-            convertedAmount,
-            validUntil
-        );
     }
 }
