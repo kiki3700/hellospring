@@ -1,6 +1,7 @@
 package com.example.hellospring.payment.order;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.List;
  * Time: <br>
  */
 @Service
+@Transactional
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
