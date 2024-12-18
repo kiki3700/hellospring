@@ -4,7 +4,7 @@ import com.example.hellospring.payment.OrderConfig;
 import com.example.hellospring.payment.order.Order;
 import com.example.hellospring.payment.order.OrderReq;
 import com.example.hellospring.payment.order.OrderService;
-import org.assertj.core.api.Assertions;
+import com.example.hellospring.payment.order.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

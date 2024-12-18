@@ -3,6 +3,8 @@ package com.example.hellospring.payment;
 import com.example.hellospring.payment.data.JdbcOrderRepository;
 import com.example.hellospring.payment.order.OrderRepository;
 import com.example.hellospring.payment.order.OrderService;
+import com.example.hellospring.payment.order.OrderServiceImpl;
+import com.example.hellospring.payment.order.OrderServiceTxProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -28,6 +30,6 @@ public class OrderConfig {
 
     @Bean
     public OrderService orderService(OrderRepository orderRepository, PlatformTransactionManager transactionManager) {
-        return new OrderService(orderRepository, transactionManager);
+        return new OrderServiceTxProxy(new OrderServiceImpl(orderRepository), transactionManager);
     }
 }

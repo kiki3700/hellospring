@@ -1,6 +1,7 @@
 package com.example.hellospring.payment;
 
 import com.example.hellospring.payment.order.OrderService;
+import com.example.hellospring.payment.order.OrderServiceImpl;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -17,7 +18,7 @@ import java.math.BigDecimal;
 public class OrderClient {
     public static void main(String[] args) {
         BeanFactory beanFactory = new AnnotationConfigApplicationContext(OrderConfig.class);
-        OrderService orderService = beanFactory.getBean(OrderService.class);
+        OrderService orderService = beanFactory.getBean(OrderServiceImpl.class);
 
         var order = orderService.createOrder("12", BigDecimal.valueOf(100));
         System.out.println(order);
